@@ -4,6 +4,9 @@ import pygame
 # import constants that are used in game.
 from constants import *
 
+# import player class
+from player import Player
+
 def main():
     # Initializing all used pygame modules
     pygame.init()
@@ -15,6 +18,9 @@ def main():
     # dt variable so that we can track the time since the last frame was drawn
     clock = pygame.time.Clock()
     dt = 0
+
+    #Initiate the Player Triangle
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     print("Starting asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
@@ -30,7 +36,9 @@ def main():
         
         #This fills the Screen Black
         pygame.Surface.fill(screen,(0,0,0))
-
+        #Draw Player postion
+        player.draw(screen)
+        player.update(dt)
         #method to refresh the screen.
         pygame.display.flip()
 
