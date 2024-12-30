@@ -1,3 +1,4 @@
+import sys
 # this allows us to use code from the open-source pygame library
 import pygame
 # import constants that are used in game.
@@ -35,7 +36,7 @@ def main():
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     #Initiate the Asteroid Field
-    asteroidfield = AsteroidField()
+    asteroid_field = AsteroidField()
 
     print("Starting asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
@@ -52,6 +53,11 @@ def main():
         # Update all sprites
         for obj in updatable:
             obj.update(dt)
+
+        for asteroid in asteroids:
+            if asteroid.collision(player):
+                print("Game over!")
+                sys.exit()
 
         #This fills the Screen Black
         screen.fill("black")
